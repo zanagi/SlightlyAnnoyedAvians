@@ -33,13 +33,12 @@ public class GameManager : MonoBehaviour {
 
             if (hit.collider)
             {
-                Debug.Log("Selected.");
                 selectedAvian = hit.collider.GetComponentInParent<Avian>();
             }
         } else if(Input.GetMouseButtonUp(0) && selectedAvian)
         {
-            Debug.Log("Released.");
-            var flightForce = (Input.mousePosition - selectedAvian.transform.position) * force;
+            var flightForce = (selectedAvian.transform.position 
+                - Camera.main.ScreenToWorldPoint(Input.mousePosition)) * force;
             selectedAvian.rBody.AddForce(flightForce);
         }
     }
