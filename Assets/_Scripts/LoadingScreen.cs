@@ -29,11 +29,9 @@ public class LoadingScreen : MonoBehaviour {
     {
         if(Instance)
         {
-            Destroy(gameObject);
             return;
         }
         Instance = this;
-        // DontDestroyOnLoad(gameObject);
 
         SetBackgroundAlpha(0.0f);
         background.gameObject.SetActive(false);

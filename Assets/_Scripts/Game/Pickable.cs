@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickable : MonoBehaviour {
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var avian = collision.GetComponent<Avian>();
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        if(avian)
+        {
+            // TODO:
+        }
+    }
 }
