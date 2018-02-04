@@ -17,18 +17,18 @@ Pickables ("Eggs"):
 	- Levitating smiley face spirits, that grant points to the player when colliding with avians
 	- Don't react to other physics
 	
+Score tracking + Level end screen with retry/next level options + Ending screen for restarting the game
+	
 Background Art:
 	- Created on Inkscape
-	- Ground: Brown rectangle with an organic image filter
-	- Grass: Custom green area with a film grain filter
-	- Clouds: Custom drawn white areas with blur filter
 		
 Version control:
 	- Git used
-	- Public repository visible at Github: https://github.com/zanagi/SlightlyAnnoyedAvians
+	- Public repository also visible at Github: https://github.com/zanagi/SlightlyAnnoyedAvians
 	
 Extra stuff:
 	- Moving clouds in the background (Script controlled)
 	- Movable camera (Arrow / WASD keys before launching the avian)
 	- Fade-in / Fade-out transitions between scenes
-	- Pickables animated using Unity's built-in Mecanim animator
+	- Pickables (levitation) animated using Unity's built-in Mecanim animator
+	- Multiple levels

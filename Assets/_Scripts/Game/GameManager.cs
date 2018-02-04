@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour {
             return;
         }
         CheckTouch();
-        CheckCameraMove();
 	}
 
     private void CheckTouch()
@@ -58,6 +57,9 @@ public class GameManager : MonoBehaviour {
         else if(selectedAvian)
         {
             CheckAvianDrag();
+        } else
+        {
+            CheckCameraMove();
         }
     }
 
@@ -123,7 +125,6 @@ public class GameManager : MonoBehaviour {
         if (hit.collider)
         {
             selectedAvian = hit.collider.GetComponentInParent<Avian>();
-            GameCamera.Instance.target = selectedAvian.transform;
             arrowTransform.position = selectedAvian.transform.position;
         }
     }
@@ -152,11 +153,19 @@ public class GameManager : MonoBehaviour {
                         arrowTransform.gameObject.SetActive(false);
                         arrowTransform.localScale = new Vector3(0, arrowTransform.localScale.y);
                         selectedAvian.rBody.AddForce(flightForce);
+                        GameCamera.Instance.target = selectedAvian.transform;
                         state = GameState.Animation;
                     }
                 }
                 return;
             }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                selectedAvian = null;
+            }
+        } else if(Input.GetMouseButtonUp(0))
+        {
+            selectedAvian = null;
         }
         arrowTransform.gameObject.SetActive(false);
     }
