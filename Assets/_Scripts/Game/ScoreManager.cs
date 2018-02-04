@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour {
 
     public static int score;
+    private int displayedScore;
     private Text text;
 
 	// Use this for initialization
@@ -16,6 +17,9 @@ public class ScoreManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        text.text = "Score: " + score + "\nAvians left: " + GameManager.Instance.avianCount;
+        if (displayedScore < score)
+            displayedScore++;
+
+        text.text = "Score: " + displayedScore + "\nAvians left: " + GameManager.Instance.avianCount;
 	}
 }

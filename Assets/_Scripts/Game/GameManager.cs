@@ -15,13 +15,12 @@ public class GameManager : MonoBehaviour {
     private float force = 5.0f, defaultArrowDist = 2.0f;
     private GameState state;
 
+    // Avian 
     public int avianCount = 3;
     [SerializeField]
     private Avian avianPrefab;
-
     private Avian selectedAvian;
     private Transform arrowTransform;
-
     private float launchTimer;
 
     private void Start()
