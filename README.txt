@@ -34,4 +34,4 @@ Extra stuff:
 	- Multiple levels
 	
 Note:
-	- The Builds folder contains a Windows build/executable of the game
+	- The Builds folder (in the zipped project) contains a Windows build/executable of the game
