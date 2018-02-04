@@ -10,12 +10,20 @@ public enum GameState
 public class GameManager : MonoBehaviour {
 
     [SerializeField]
-    private float force = 5.0f;
+    private float force = 5.0f, defaultArrowDist = 2.0f;
     private GameState state;
     private Avian selectedAvian;
-    
-	// Update is called once per frame
-	void Update ()
+
+    private Transform arrowTransform;
+
+    private void Start()
+    {
+        arrowTransform = transform.Find("Arrow");
+        arrowTransform.gameObject.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         CheckTouch();
 	}
@@ -34,12 +42,46 @@ public class GameManager : MonoBehaviour {
             if (hit.collider)
             {
                 selectedAvian = hit.collider.GetComponentInParent<Avian>();
+                arrowTransform.position = selectedAvian.transform.position;
             }
-        } else if(Input.GetMouseButtonUp(0) && selectedAvian)
-        {
-            var flightForce = (selectedAvian.transform.position 
-                - Camera.main.ScreenToWorldPoint(Input.mousePosition)) * force;
-            selectedAvian.rBody.AddForce(flightForce);
         }
+        else if(selectedAvian)
+        {
+            var delta = AvianMouseDelta();
+            var length = delta.magnitude;
+            arrowTransform.gameObject.SetActive(true);
+
+            if (length > 0.0f)
+            {
+                var angle = Vector3.SignedAngle(Vector3.right, delta / length, Vector3.forward);
+
+                if (Mathf.Abs(angle) <= 90.0f)
+                {
+                    arrowTransform.localRotation = Quaternion.Euler(0, 0, angle);
+                    arrowTransform.localScale = new Vector3(length / defaultArrowDist, arrowTransform.localScale.y);
+
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        var flightForce = delta * force;
+
+                        if (flightForce.sqrMagnitude > 0.0f)
+                        {
+                            arrowTransform.gameObject.SetActive(false);
+                            arrowTransform.localScale = new Vector3(0, arrowTransform.localScale.y);
+                            selectedAvian.rBody.AddForce(flightForce);
+                            selectedAvian = null;
+                        }
+                    }
+                    return;
+                }
+            }
+            arrowTransform.gameObject.SetActive(false);
+        }
+    }
+
+    private Vector2 AvianMouseDelta()
+    {
+        return selectedAvian.transform.position
+          - Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 }
