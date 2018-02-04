@@ -32,3 +32,6 @@ Extra stuff:
 	- Fade-in / Fade-out transitions between scenes
 	- Pickables (levitation) animated using Unity's built-in Mecanim animator
 	- Multiple levels
+	
+Note:
+	- The Builds folder contains a Windows build/executable of the game
