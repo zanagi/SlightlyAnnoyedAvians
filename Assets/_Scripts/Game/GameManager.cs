@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
         CheckTouch();
+        CheckCameraMove();
 	}
 
     private void CheckTouch()
@@ -53,6 +54,11 @@ public class GameManager : MonoBehaviour {
         {
             CheckAvianDrag();
         }
+    }
+
+    private void CheckCameraMove()
+    {
+        GameCamera.Instance.CheckMove();
     }
 
     private void CheckAnimationEnd()
