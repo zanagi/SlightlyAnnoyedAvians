@@ -23,12 +23,18 @@ public class GameManager : MonoBehaviour {
     private Transform arrowTransform;
     private float launchTimer;
 
+    // Pickables
+    private Pickable[] pickables;
+
     private void Start()
     {
         Instance = this;
         arrowTransform = transform.Find("Arrow");
         arrowTransform.gameObject.SetActive(false);
         CreateAvian();
+
+        // Find pickables
+        pickables = FindObjectsOfType<Pickable>();
     }
 
     // Update is called once per frame
@@ -67,7 +73,7 @@ public class GameManager : MonoBehaviour {
         if (launchTimer <= 2.0f)
             return;
 
-        if(selectedAvian.Stopped())
+        if(selectedAvian.Stopped() || launchTimer >= 20.0f)
         {
             GameCamera.Instance.Reset();
             Destroy(selectedAvian.gameObject);
@@ -78,11 +84,27 @@ public class GameManager : MonoBehaviour {
 
             if(avianCount == 0)
             {
-                // TODO: end;
-                Debug.Log("End...");
+                for (int i = 0; i < pickables.Length; i++)
+                {
+                    if (pickables[i])
+                    {
+                        EndScreen.Instance.Show(false);
+                        return;
+                    }
+                }
+                EndScreen.Instance.Show(true);
             } else
             {
-                CreateAvian();
+                for(int i = 0; i < pickables.Length; i++)
+                {
+                    if(pickables[i])
+                    {
+                        // Pickables still left, create new avian
+                        CreateAvian();
+                        return;
+                    }
+                }
+                EndScreen.Instance.Show(true);
             }
         }
     }

@@ -12,7 +12,7 @@ public class GameCamera : MonoBehaviour {
     
 	private void Start () {
         Instance = this;
-        defaultPos = transform.localPosition;
+        defaultPos = transform.position;
 	}
 
     private void Update()
@@ -34,6 +34,7 @@ public class GameCamera : MonoBehaviour {
 
     public void Reset()
     {
-        transform.localPosition = defaultPos;
+        target = null;
+        transform.position = defaultPos;
     }
 }

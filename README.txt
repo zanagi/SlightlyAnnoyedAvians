@@ -25,7 +25,7 @@ Background Art:
 		
 Version control:
 	- Git used
-	- Public repository in Github: https://github.com/zanagi/SlightlyAnnoyedAvians
+	- Public repository visible at Github: https://github.com/zanagi/SlightlyAnnoyedAvians
 	
 Extra stuff:
 	- Moving clouds in the background (Script controlled)

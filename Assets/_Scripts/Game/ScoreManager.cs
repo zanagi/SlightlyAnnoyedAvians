@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
-    public static int score;
+    public static int score, oldScore;
     private int displayedScore;
     private Text text;
 
 	// Use this for initialization
 	void Start () {
         text = GetComponentInChildren<Text>();
+        displayedScore = score;
+        oldScore = score;
 	}
 	
 	// Update is called once per frame
@@ -22,4 +24,9 @@ public class ScoreManager : MonoBehaviour {
 
         text.text = "Score: " + displayedScore + "\nAvians left: " + GameManager.Instance.avianCount;
 	}
+
+    public static void Reset()
+    {
+        score = oldScore;
+    }
 }
