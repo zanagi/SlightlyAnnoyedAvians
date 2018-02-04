@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickable : MonoBehaviour {
-
-    [SerializeField]
-    private int score;
+public class Bounds : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,7 +10,7 @@ public class Pickable : MonoBehaviour {
 
         if(avian)
         {
-            ScoreManager.score += score;
+            avian.outOfBounds = true;
         }
     }
 }

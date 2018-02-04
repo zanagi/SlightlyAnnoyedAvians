@@ -1,5 +1,11 @@
 Yuanqi Shan, 427337
 
+Environment:
+	- A flat ground
+
+Avian:
+	- Uses Unity's built-in 2D physics (Rigidbody2D)
+
 Launching:
 	- The Avian can be launched by clicking -> dragging -> releasing.
 	- While dragged, an arrow sprite will be displayed to show the estimated flight direction of the avian and its force
